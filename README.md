@@ -4,7 +4,7 @@ Servocalligraphy
 Inspiration
 -----------
 
-* Plotclock: http://i.imgur.com/K67IPua.gif
+* Plotclock: http://www.gizmodo.de/wp-content/uploads/2014/02/ku-xlarge-28.gif
 * Calligraphy: http://i.imgur.com/FRSJLYx.gif
 
 Resources
