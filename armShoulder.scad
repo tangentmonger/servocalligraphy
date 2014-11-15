@@ -1,7 +1,7 @@
 height = 3; //mm
 squoojefactor = 1; //mm
 screw = 3.5 + squoojefactor; //mm, ie a loose M3
-wire = 1.5 + squoojefactor; //mm
+wire = 1 + squoojefactor; //mm
 thick = 3;//
 servoarmlength = 25; //mm
 
