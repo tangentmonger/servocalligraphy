@@ -8,22 +8,43 @@ length = 60; //mm
 
 pairDistance = 20; //mm, distance between hole centres
 armDistance = 30; //mm, distance between inner hole centres
-width = 25;
+width = 15;
 
 
-difference(){
-cube([pairDistance + armDistance + pairDistance + screw + (2*thick), width + screw + (2*thick), height]);
+
 
 //arm holes
-translate([thick + (screw/2), thick + (screw/2) + width/2, 0]) cylinder(h=height, d=screw);
-translate([thick + (screw/2) + pairDistance, thick + (screw/2) + width / 2, 0]) cylinder(h=height, d=screw);
-translate([pairDistance + armDistance + thick + (screw/2), thick + (screw/2) + width/2, 0]) cylinder(h=height, d=screw);
-translate([pairDistance + armDistance + thick + (screw/2) + pairDistance, thick + (screw/2) + width / 2, 0]) cylinder(h=height, d=screw);
+translate([thick + (screw/2),                thick + (screw/2) + width, 0]) joint();
+translate([thick + (screw/2) + pairDistance, thick + (screw/2) + width, 0]) joint();
+translate([pairDistance + armDistance + thick + (screw/2), thick + (screw/2) + width, 0]) joint();
+translate([pairDistance + armDistance + thick + (screw/2) + pairDistance, thick + (screw/2) + width , 0]) joint();
 
 //mounting holes
-translate([thick + (screw/2), thick + (screw/2), 0]) cylinder(h=height, d=screw);
-translate([pairDistance + armDistance + pairDistance + thick + (screw/2), thick + (screw/2), 0]) cylinder(h=height, d=screw);
-translate([(pairDistance + armDistance + pairDistance) / 2 + thick + (screw/2), thick + (screw/2) + width, 0]) cylinder(h=height, d=screw);
+translate([thick + (screw/2) + pairDistance, thick + (screw/2), 0]) joint();
+translate([pairDistance + armDistance + thick + (screw/2), thick + (screw/2), 0]) joint();
+translate([(pairDistance + armDistance + pairDistance) / 2 + thick + (screw/2), thick + (screw/2) + width, 0]) joint();
 
+//end bars
+translate([2*thick + screw, (width) + (screw/2) + (thick/2), 0]) cube([pairDistance - screw - (2*thick), thick, height]);
+translate([2*thick + screw + pairDistance + armDistance, (width) + (screw/2) + (thick/2), 0]) cube([pairDistance - screw - (2*thick), thick, height]);
+
+//mid bars
+translate([(2*thick) + screw  + pairDistance, (width) + (screw/2) + (thick/2), 0]) cube([armDistance/2 - screw - (2*thick), thick, height]);
+translate([(2*thick) + screw  + pairDistance + (armDistance / 2), (width) + (screw/2) + (thick/2), 0]) cube([armDistance/2 - screw - (2*thick), thick, height]);
+
+
+//base bar
+translate([(2*thick) + screw  + pairDistance, (screw/2) + (thick/2), 0]) cube([armDistance - screw - (2*thick), thick, height]);
+
+//up bars
+translate([thick/2 + pairDistance + thick + screw/2, screw + thick, 0]) rotate([0,0,90]) cube([width - screw, thick, height]);
+translate([thick/2 + pairDistance + thick + screw/2 + armDistance, screw + thick, 0]) rotate([0,0,90]) cube([width - screw, thick, height]);
+
+
+
+module joint(){
+difference(){
+	cylinder(h=height, d=thick + (2*screw));
+	cylinder(h=height, d=screw);
+	}
 }
-
